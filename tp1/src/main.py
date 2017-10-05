@@ -17,7 +17,11 @@ import subprocess as sp
 
 # Global variables.
 parser = ap.ArgumentParser()
+DATA_FOLDER = '__temp_data__'
 BOOKS_FOLDER = 'books'
+VECTORS_FOLDER = 'vectors'
+
+NULL = None
 
 
 def parse_arguments():
@@ -36,14 +40,23 @@ def parse_arguments():
 def setup():
 	''' Set up current working folder. '''
 
-	sp.call(['rm', '-rf', BOOKS_FOLDER])
-	sp.call(['mkdir', BOOKS_FOLDER])
+	print('[+] Setting up')
+
+	global NULL
+
+	NULL = open(os.devnull, 'w')
+	sp.call(['mkdir', DATA_FOLDER])
+	sp.call(['mkdir', DATA_FOLDER + '/' + BOOKS_FOLDER])
+	sp.call(['mkdir', DATA_FOLDER + '/' + VECTORS_FOLDER])
+
+	print('\t- Building word2vec')
+	sp.call(['make', 'all', '-C', 'word2vec'], stdout=NULL)
 
 	return
 
 
 def trim_file(input_folder, filename):
-	''' Remove symbols from a particular file, leaving only alphanumeric
+	''' Remove symbols from a particular book file, leaving only alphanumeric
 		characters, and dump the result to file. 
 
 		@type 	input_folder:	str
@@ -54,7 +67,7 @@ def trim_file(input_folder, filename):
 		'''
 
 	file = open(input_folder + '/' + filename, 'r')
-	out_file = open(BOOKS_FOLDER + '/' + filename, 'w')
+	out_file = open(DATA_FOLDER + '/' + BOOKS_FOLDER + '/' + filename, 'w')
 
 	print('\t- ' + filename)
 
@@ -69,7 +82,7 @@ def trim_file(input_folder, filename):
 
 def pre_process(args):
 	''' Process input books and produces new files without unnecessary
-		characters and tokenized words.
+		characters.
 
 		@type	args:	args.Namespace
 		@param 	args:	Program's arguments
@@ -86,12 +99,48 @@ def pre_process(args):
 	return
 
 
+def build_vectors():
+	''' Build semantic word vectors for each book. '''
+
+	print('[+] Building word vectors')
+	book_names = [f for f in os.listdir(DATA_FOLDER + '/' + BOOKS_FOLDER)]
+	book_names.sort()
+
+	for book_name in book_names:
+		vector_name = book_name[:-4] + '.bin'
+		print('\t- ' + vector_name)
+		sp.call([
+			'./word2vec/word2vec',
+			'-train',
+			'{}/{}/{}'.format(DATA_FOLDER, BOOKS_FOLDER, book_name),
+			'-output',
+			'{}/{}/{}'.format(DATA_FOLDER, VECTORS_FOLDER, vector_name),
+			'-cbow', '1', '-size', '200', '-window', '8', '-negative', '25',
+			'-hs', '0', '-sample', '1e-4', '-threads', '20', '-binary', '1',
+			'-iter', '15'])
+
+
+def finish():
+	''' Clean the directory and perform final operations. '''
+
+	print('[+] Finishing...')
+
+	print('\t- Cleaning files')
+	sp.call(['rm', '-rf', DATA_FOLDER])
+	sp.call(['make', 'clean', '-C', 'word2vec'], stdout=NULL)
+
+	NULL.close()
+
+	print('Done.')
+
+
 def main():
 	''' Main program. '''
 
 	setup()
 	args = parse_arguments()
 	pre_process(args)
-
+	build_vectors()
+	finish()
 
 main()
