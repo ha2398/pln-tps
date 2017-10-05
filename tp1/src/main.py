@@ -71,8 +71,9 @@ def trim_file(input_folder, filename):
 
 	print('\t- ' + filename)
 
-	for line in file:
-		out_file.write(re.sub(r'[^\w \n]', '', line))
+	content = file.read()
+	new = re.sub('(\s|\W)+', ' ', content).lower()
+	out_file.write(new)
 
 	file.close()
 	out_file.close()
@@ -107,7 +108,7 @@ def build_vectors():
 	book_names.sort()
 
 	for book_name in book_names:
-		vector_name = book_name[:-4] + '.bin'
+		vector_name = book_name[:-4] + '.vec'
 		print('\t- ' + vector_name)
 		sp.call([
 			'./word2vec/word2vec',
@@ -116,7 +117,7 @@ def build_vectors():
 			'-output',
 			'{}/{}/{}'.format(DATA_FOLDER, VECTORS_FOLDER, vector_name),
 			'-cbow', '1', '-size', '200', '-window', '8', '-negative', '25',
-			'-hs', '0', '-sample', '1e-4', '-threads', '20', '-binary', '1',
+			'-hs', '0', '-sample', '1e-4', '-threads', '20', '-binary', '0',
 			'-iter', '15'])
 
 
@@ -141,6 +142,6 @@ def main():
 	args = parse_arguments()
 	pre_process(args)
 	build_vectors()
-	finish()
+	#finish()
 
 main()
