@@ -127,7 +127,7 @@ def finish():
 	print('[+] Finishing...')
 
 	print('\t- Cleaning files')
-	sp.call(['rm', '-rf', DATA_FOLDER])
+	#sp.call(['rm', '-rf', DATA_FOLDER])
 	sp.call(['make', 'clean', '-C', 'word2vec'], stdout=NULL)
 
 	NULL.close()
@@ -142,6 +142,6 @@ def main():
 	args = parse_arguments()
 	pre_process(args)
 	build_vectors()
-	#finish()
+	finish()
 
 main()
