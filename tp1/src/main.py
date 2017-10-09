@@ -22,6 +22,7 @@ BOOKS_FOLDER = 'books'
 VECTORS_FOLDER = 'vectors'
 
 NULL = None
+vocabs = None
 
 
 def parse_arguments():
@@ -43,8 +44,10 @@ def setup():
 	print('[+] Setting up')
 
 	global NULL
+	global vocabs
 
 	NULL = open(os.devnull, 'w')
+	vocabs = {}
 	sp.call(['mkdir', DATA_FOLDER])
 	sp.call(['mkdir', DATA_FOLDER + '/' + BOOKS_FOLDER])
 	sp.call(['mkdir', DATA_FOLDER + '/' + VECTORS_FOLDER])
@@ -66,6 +69,8 @@ def trim_file(input_folder, filename):
 		@param 	filename:	Name of the file to trim
 		'''
 
+	global vocabs
+
 	file = open(input_folder + '/' + filename, 'r')
 	out_file = open(DATA_FOLDER + '/' + BOOKS_FOLDER + '/' + filename, 'w')
 
@@ -74,6 +79,15 @@ def trim_file(input_folder, filename):
 	content = file.read()
 	new = re.sub('(\s|\W)+', ' ', content).lower()
 	out_file.write(new)
+
+	words = new.split()
+	vocab = set()
+
+	for word in words:
+		if word not in vocab:
+			vocab.add(word)
+
+	vocabs[filename[:-4]] = vocab
 
 	file.close()
 	out_file.close()
@@ -101,7 +115,7 @@ def pre_process(args):
 
 
 def build_vectors():
-	''' Build semantic word vectors for each book. '''
+	''' Build word vectors for each book. '''
 
 	print('[+] Building word vectors')
 	book_names = [f for f in os.listdir(DATA_FOLDER + '/' + BOOKS_FOLDER)]
@@ -131,7 +145,6 @@ def finish():
 	sp.call(['make', 'clean', '-C', 'word2vec'], stdout=NULL)
 
 	NULL.close()
-
 	print('Done.')
 
 
@@ -141,7 +154,10 @@ def main():
 	setup()
 	args = parse_arguments()
 	pre_process(args)
+
 	build_vectors()
+
+
 	finish()
 
 main()
