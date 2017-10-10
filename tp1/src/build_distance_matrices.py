@@ -16,7 +16,13 @@ VECTORS_FOLDER = 'vectors'
 
 
 def read_vectors():
-	''' Read word vectors for all books. '''
+	''' Read word vectors for all books.
+	
+		@rtype:		Dictionary
+		@return:	Dictionary with filename strings as keys and dictionaris 
+					as values. These values are word string -> float list
+					dictionaries.
+		'''
 
 	print('[+] Reading word vectors')
 	path = DATA_FOLDER + '/' + VECTORS_FOLDER
@@ -64,8 +70,44 @@ def cosine_similarity(vector1, vector2):
 	return num/(den1 * den2)
 
 
-def main(vocabs):
+def build_distance_matrices(vectors):
+	''' Build distance matrices for all books, where each entry in these
+		matrices represents a pair of words.
+
+		@type	vectors:	Dictionary
+		@param 	vectors:	Dictionary with filename strings as keys and
+							dictionaries as values. These values are word
+							string -> float list dictionaries.
+
+		@rtype	Dictionary
+		@return	Dictionary with filename strings as keys and dictionaries
+				as values. These values word pairs -> float distance 
+				dictionaries.
+		'''
+
+	print('[+] Creating distance matrices')
+
+	dmatrices = {}
+
+	for filename in vectors:
+		print('\t- ' + filename)
+		matrix = {}
+
+		distances = vectors[filename]
+		words = list(distances)
+
+		# For each pair of words, calculate distance.
+		for word1 in words:
+			for word2 in words:
+				if word1 < word2 and (word1, word2) not in matrix:
+					matrix[word1, word2] = cosine_similarity(distances[word1],
+						distances[word2])
+
+		dmatrices[filename] = matrix
+
+
+def main():
 	''' Main program. '''
 
 	vectors = read_vectors()
-	print(vectors)
+	dmatrices = build_distance_matrices(vectors)

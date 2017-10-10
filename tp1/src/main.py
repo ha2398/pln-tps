@@ -34,7 +34,7 @@ def main():
 	''' Main program. '''
 	args = parse_arguments()
 	vocabs = bv.main(args.INPUT_FOLDER)
-	bdm.main(vocabs)
+	bdm.main()
 	
 	
 main()

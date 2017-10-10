@@ -21,7 +21,6 @@ BOOKS_FOLDER = 'books'
 VECTORS_FOLDER = 'vectors'
 
 NULL = None
-vocabs = None
 
 
 def setup():
@@ -30,7 +29,6 @@ def setup():
 	print('[+] Setting up')
 
 	global NULL
-	global vocabs
 
 	NULL = open(os.devnull, 'w')
 	vocabs = {}
@@ -67,9 +65,6 @@ def trim_file(input_folder, filename):
 	# Normalize text.
 	new = re.sub('(\s|\W)+', ' ', content).lower()
 	out_file.write(new)
-
-	vocab = set(new.split())
-	vocabs[filename[:-4]] = vocab
 
 	file.close()
 	out_file.close()
@@ -114,7 +109,9 @@ def build_vectors():
 			'{}/{}/{}'.format(DATA_FOLDER, VECTORS_FOLDER, vector_name),
 			'-cbow', '1', '-size', '200', '-window', '8', '-negative', '25',
 			'-hs', '0', '-sample', '1e-4', '-threads', '20', '-binary', '0',
-			'-iter', '15'])
+			'-iter', '15', 'min-count', '1000'])
+
+	return
 
 
 def finish():
@@ -123,10 +120,12 @@ def finish():
 	print('[+] Finishing...')
 
 	print('\t- Cleaning files')
-	sp.call(['make', 'all', '-C', 'word2vec'])
+	sp.call(['make', 'clean', '-C', 'word2vec'])
 
 	NULL.close()
 	print('Done.')
+
+	return
 
 
 def main(input_folder):
@@ -141,4 +140,4 @@ def main(input_folder):
 	build_vectors()
 	finish()
 
-	return vocabs
+	return
