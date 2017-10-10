@@ -39,7 +39,7 @@ def setup():
 	sp.call(['mkdir', DATA_FOLDER + '/' + VECTORS_FOLDER])
 
 	print('\t- Building word2vec')
-	sp.call(['make', 'all', '-C', 'word2vec'], stdout=NULL)
+	sp.call(['make', 'all', '-C', 'word2vec'])
 
 	return
 
@@ -123,15 +123,19 @@ def finish():
 	print('[+] Finishing...')
 
 	print('\t- Cleaning files')
-	#sp.call(['rm', '-rf', DATA_FOLDER])
-	sp.call(['make', 'clean', '-C', 'word2vec'], stdout=NULL)
+	sp.call(['rm', '-rf', DATA_FOLDER])
+	sp.call(['make', 'all', '-C', 'word2vec'])
 
 	NULL.close()
 	print('Done.')
 
 
 def main(input_folder):
-	''' Main program. '''
+	''' Main program. 
+
+		@type	input_folder:	string
+		@param 	input_folder:	Name of input folder
+		'''
 
 	setup()
 	pre_process(input_folder)

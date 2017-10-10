@@ -10,6 +10,7 @@ UFMG/DCC
 
 import argparse as ap
 import build_vectors as bv
+import build_distance_matrices as bdm
 
 
 # Global variables.
@@ -33,6 +34,7 @@ def main():
 	''' Main program. '''
 	args = parse_arguments()
 	vocabs = bv.main(args.INPUT_FOLDER)
-
+	bdm.main(vocabs)
+	
 	
 main()
