@@ -47,6 +47,23 @@ def read_vectors():
 	return vectors
 
 
+def cosine_similarity(vector1, vector2):
+	''' Get the cosine similarity of two vectors.
+
+		@type	vector1:	float list
+		@param	vector1: 	First vector
+
+		@type	vector2:	float list
+		@param	vector2: 	Second vector
+		'''
+
+	num = sum([(a*b) for (a,b) in zip(vector1, vector2)])
+	den1 = sum((a ** 2 for a in vector1)) ** 0.5
+	den2 = sum((b ** 2 for b in vector2)) ** 0.5
+
+	return num/(den1 * den2)
+
+
 def main(vocabs):
 	''' Main program. '''
 

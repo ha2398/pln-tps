@@ -123,7 +123,6 @@ def finish():
 	print('[+] Finishing...')
 
 	print('\t- Cleaning files')
-	sp.call(['rm', '-rf', DATA_FOLDER])
 	sp.call(['make', 'all', '-C', 'word2vec'])
 
 	NULL.close()
