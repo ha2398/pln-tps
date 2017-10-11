@@ -107,9 +107,8 @@ def build_vectors():
 			'{}/{}/{}'.format(DATA_FOLDER, BOOKS_FOLDER, book_name),
 			'-output',
 			'{}/{}/{}'.format(DATA_FOLDER, VECTORS_FOLDER, vector_name),
-			'-cbow', '1', '-size', '200', '-window', '8', '-negative', '25',
-			'-hs', '0', '-sample', '1e-4', '-threads', '20', '-binary', '0',
-			'-iter', '15', 'min-count', '1000'])
+			'-cbow', '1', '-size', '200', '-window', '8', '-threads', '20',
+			'-binary', '0', '-iter', '15', 'min-count', '10'])
 
 	return
 

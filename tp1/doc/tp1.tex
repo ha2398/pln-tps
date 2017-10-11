@@ -14,7 +14,7 @@
 \author{Hugo Araujo de Sousa}
 
 \address{
-  Computação Natural (2017/2) \\
+  Processamento de Linguagem Natural (2017/2) \\
   Departamento de Ciência da Computação \\
   Universidade Federal de Minas Gerais (UFMG)
   \email{hugosousa@dcc.ufmg.br}
@@ -27,31 +27,142 @@
 \begin{resumo} 
   O objetivo desse trabalho é praticar conceitos relacionados a vetores semânticos
   de palavras, trabalhando com esses conceitos em uma aplicação real. Para isso,
-  é utilizada uma base real de livros juntamento com uma implmentação do algoritmo
+  é utilizada uma base real de livros juntamento com uma implementação do algoritmo
   Skip-Gram.
 \end{resumo}
 
 \section{INTRODUÇÃO}
 
+O desenvolvimento de modelos de linguagem natural é fundamental para permitir que os
+computadores sejam capazes de processar essas linguagens de forma eficaz e eficiente.
+É a partir destes que a linguagem como conhecemos se torna mais próxima dos dados que
+um computador consegue processar melhor.
+
+Dentre os diversos modelos já propostos, um deles se destaca quanto a aplicação requer
+a análise de similaridade e relação entre palavras. Para isso, para cada palavra de um
+corpus, é criado um vetor. Conhecendo-se os vetores de todas as palavras, é possível
+comparar e descobrir quão próximas umas das outras em um determinado corpus.
+
+Nesse trabalho, o modelo de linguagem de vetor de palavras é utilizado a fim de realizar
+comparações qualitativas em uma base de dados formada por dezenas de livros reais.
 
 \section{MODELAGEM}
 
+Nessa seção são apresentadas as decisões de implementação do projeto e detalhes sobre a modelagem
+do mesmo.
+
+\subsection{Base de dados}
+
+O corpi utilizado nesse projeto é composto de livros reais, obras clássicas da literatura mundial.
+Para obtê-los, foi utilizado o website \textbf{Project Gutenberg} \cite{gberg}.
+
+\subsection{Vetores de Palavras}
+
+A fim de produzir as representações vetoriais de cada palavra em um determinado corpus,
+foi utilizado o repositório \textbf{Word2Vec} \cite{word2vec}, que fornece uma implementação eficiente
+das arquiteturas Continuous Bag-of-Words e Skip-Gram.
+
+\subsection{Pré-Processamento de texto}
+
+Para utilizar o Word2Vec, foi necessário realizar algumas transformações nos arquivos de texto
+dos livros, obtidos do website Project Gutenberg. O arquivo de entrada recebido pelo Word2Vec
+tem a forma de um arquivo de texto que contém somente palavras, todas em letras minúsculas,
+separadas por espaços e sem qualquer caractere não alfanumérico.
+
+\subsection{Distância entre Palavras}
+
+Dado que cada palavra do corpi é agora representada por um vetor de números de ponto-flutuante,
+é necessário construir um método para calcular quão distantes (ou próximas) são duas palavras em
+um corpus. Para esse projeto, a \textbf{Similaridade de Cosseno} \cite{cosdist} foi utilizada. Segundo
+a mesma, podemos calcular o quanto dois vetores são semelhantes através da formula:
+
+Dados dois vetores, A e B, a similaridade $ sim(A, B) $ entre eles é:
+
+\begin{center}
+  $ sim(A, B) = \frac{\sum_{i=1}^{n} A_i B_i}{\sqrt{\sum_{i=1}^{n} A_i^2} \sqrt{\sum_{i=1}^{n} B_i^2}} $
+\end{center}
+
+\subsection{Matrizes de Distância}
+
+Uma vez que possuímos todas os vetores de palavras para o vocabulário de um corpus, podemos gerar
+uma matriz que agrupe todos os possíveis pares de palavras desse vocabulário e armazene a distância
+entre essas palavras. Essa matriz é de vital importância para conseguirmos calcular o quão similares
+são dois livros, uma vez que, para cada livro, será gerada uma matriz de distância. 
+
+\subsection{Comparação de Matrizes de Distância}
+
+Dado que possuímos uma matriz de distância para cada livro da base de dados, podemos utilizá-las
+para comparar esses livros e obter relações entre eles. Para isso, utilizamos a fórmula a seguir,
+que calcula a distância entre duas matrizes de distância (ou seja, a distância entre dois livros).
+
+Dadas duas matrizes de distância, A e B, e sendo $ n $ a distância $ dist(A, B) $
+entre elas é dada por:
+
+\begin{center}
+ $ dist(A, B) = \sqrt{ \sum_{i=1}^{n} \sum_{j=1}^{n} (a_{ij} - b_{ij})^2 } $
+\end{center}
 
 \section{IMPLEMENTAÇÃO}
 
+O projeto foi implementado utilizando a linguagem de programação Python 3.
 
-\section{ESTRUTURA DO PROJETO E EXECUÇÃO}
+\subsection{Estrutura do Projeto}
+
+Os arquivos do projeto estão estruturados da seguinte forma:
+
+\begin{itemize}
+ \item \textbf{build\_vectors.py} Arquivo responsável pelo pré-processamento dos arquivos de
+ texto dos livros da base de dados e pela geração dos vetores de palavras para cada livro,
+ utilizando o Word2Vec.
+ 
+ \item \textbf{build\_distance\_matrices.py} Responsável pela geração das matrizes de distância
+ para cada livro, a partir dos arquivos com os vetores de palavras gerados anteriormente.
+ 
+ \item \textbf{main.py} Programa principal, realiza a conexão entre os outros módulos do projeto.
+\end{itemize}
 
 \subsection{Execução e Parâmetros}
 
+Primeiramente, foi necessário definir os parâmetros a serem utilizados na execução do Word2Vec,
+para gerar os vetores de palavras. Eles foram selecionados seguindo os próprios parâmetros
+utilizados no script \textbf{demo-word.sh} presente no diretório do Word2Vec, com pequenas
+modificações:
 
-\subsection{Entrada e Saída}
+\begin{itemize}
+ \item \textbf{-cbow 1}: Algoritmo utiliza Continuous Bag-of-Words, ao invés de Skip-Gram.
+ \item \textbf{-size 200}: Os vetores de palavras gerados terão dimensão 200.
+ \item \textbf{-window 8}: Tamanho da janela (contexto) a ser considerado pelo algoritmo.
+ \item \textbf{-threads 20}: Número de threads durante a execução.
+ \item \textbf{-binary 0}: Configura o programa para gerar vetores de palavras como arquivos
+ de texto, ao invés de arquivos binários.
+ \item \textbf{-iter 15}: Número de iterações de treino.
+ \item \textbf{-min-count 10}: Define o número mínimo de ocorrências que uma palavra deve ter 
+ no corpus para ser considerada durante a geração de vetores.
+\end{itemize}
 
+Já o programa principal recebe apenas um parâmetro, para executar o programa, basta, na pasta
+\textbf{src} do projeto, executar:
+
+\begin{center}
+ ./main input\_folder
+\end{center}
+
+Onde input\_folder é o diretório que contém os arquivos de texto dos livros de entrada.
 
 \section{RESULTADOS}
 
 
 \section{CONCLUSÃO}
+
+O trabalho foi de grande importância para fixar conceitos vistos nas aulas da disciplina, como
+Modelos de Linguagem e algoritmos de aprendizado de máquina aplicada a processamento de linguagem
+natural. Além disso foi muito interessante poder verificar propriedades através da similaridade entre
+os modelos gerados para cada livro.
+
+A maior dificuldade encontrada foi trabalhar com dados muito grandes. Cada livro possui vocabulários
+de milhares de palavras e a própria base de dados contém dezenas de livros.
+
+De maneira geral, creio que o aprendizado foi muito grande e superou as dificuldades encontradas.
 
 \section{REFERÊNCIAS}
 
