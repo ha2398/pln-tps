@@ -14,6 +14,8 @@ import os
 DATA_FOLDER = '__temp_data__'
 VECTORS_FOLDER = 'vectors'
 
+vocabs = {}
+dmatrices = {}
 
 def read_vectors():
 	''' Read word vectors for all books.
@@ -78,55 +80,60 @@ def build_distance_matrices(vectors):
 		@param 	vectors:	Dictionary with filename strings as keys and
 							dictionaries as values. These values are word
 							string -> float list dictionaries.
-
-		@rtype	Dictionary
-		@return	Dictionary with filename strings as keys and dictionaries
-				as values. These values word pairs -> float distance 
-				dictionaries.
 		'''
 
-	print('[+] Creating distance matrices')
+	global vocabs
+	global dmatrices
 
-	dmatrices = {}
+	print('[+] Creating distance matrices')
 
 	for filename in vectors:
 		print('\t- ' + filename)
 		matrix = {}
+		cur_vocab = set()
 
-		key = int(filename.split(' ')[0])
+		key = filename
 
 		distances = vectors[filename]
 		words = list(distances)
 
 		# For each pair of words, calculate distance.
 		for word1 in words:
+			cur_vocab.add(word1)
 			for word2 in words:
 				if word1 <= word2 and (word1, word2) not in matrix:
 					matrix[word1, word2] = cosine_similarity(distances[word1],
 						distances[word2])
 
 		dmatrices[key] = matrix
+		vocabs[key] = cur_vocab
 
-	return dmatrices
+	return
 
 
-def compare_matrices(matrixA, matrixB):
+def compare_matrices(book1, book2):
 	''' Compare two matrices and calculate how similar they are.
 
-		@type	matrixA:	Dict (string, string) -> float
-		@param	matrixA:	First matrix to compare.
+		@type	matrixA:	int
+		@param	matrixA:	Index of first book to compare.
 
-		@type	matrixB:	Dict (string, string) -> float
-		@param	matrixB:	Second matrix to compare.
+		@type	matrixB:	int
+		@param	matrixB:	Index of second book to compare.
 
 		@rtype:		float
 		@return:	A number that represents the distance between the two input
 					matrices.
 		'''
 
-	vocab1 = set(matrixA)
-	vocab2 = set(matrixB)
+	matrixA = dmatrices[book1]
+	matrixB = dmatrices[book2]
+
+	vocab1 = vocabs[book1]
+	vocab2 = vocabs[book2]
+	
 	vocab = vocab1.union(vocab2)
+
+	print('Comparing matrices...')
 
 	dist = 0
 	for word1 in vocab:
@@ -134,18 +141,37 @@ def compare_matrices(matrixA, matrixB):
 			if (word1 > word2):
 				continue
 
-			aij = matrixA[word1, word2] if (word1, word2) in matrixA else 0
-			bij = matrixA[word1, word2] if (word1, word2) in matrixB else 0
+			if (word1, word2) in matrixA:
+				aij = matrixA[word1, word2]
+			else:
+				aij = 0
+
+			if (word1, word2) in matrixB:
+				bij = matrixB[word1, word2]
+			else:
+				bij = 0
 
 			dist += (aij - bij) ** 2
 
 	dist = dist ** 0.5
-	return dist
+	print('Matrices distance:', dist)
+
+
+def get_books_distances():
+	''' Calculate the distance between all books. '''
+
+	global dmatrices
+
+	names = list(dmatrices)
+	names.sort()
+
+	
 
 
 def main():
 	''' Main program. '''
 
 	vectors = read_vectors()
-	dmatrices = build_distance_matrices(vectors)
-	print(compare_matrices(dmatrices[1], dmatrices[6]))
+	build_distance_matrices(vectors)
+	get_books_distances()
+	
