@@ -92,7 +92,7 @@ def build_distance_matrices(vectors):
 		matrix = {}
 		cur_vocab = set()
 
-		key = filename
+		key = int(filename.split(' ')[0])
 
 		distances = vectors[filename]
 		words = list(distances)
@@ -133,8 +133,6 @@ def compare_matrices(book1, book2):
 	
 	vocab = vocab1.union(vocab2)
 
-	print('Comparing matrices...')
-
 	dist = 0
 	for word1 in vocab:
 		for word2 in vocab:
@@ -154,7 +152,7 @@ def compare_matrices(book1, book2):
 			dist += (aij - bij) ** 2
 
 	dist = dist ** 0.5
-	print('Matrices distance:', dist)
+	return dist
 
 
 def get_books_distances():
@@ -162,10 +160,20 @@ def get_books_distances():
 
 	global dmatrices
 
-	names = list(dmatrices)
-	names.sort()
+	path = DATA_FOLDER + '/' + VECTORS_FOLDER
+	names = [f[:-4] for f in os.listdir(path)]
 
-	
+	for name1 in names:
+		for name2 in names:
+			print('Comparing books:')
+
+			book1 = int(name1.split(' ')[0])
+			book2 = int(name2.split(' ')[0])
+
+			print(name1)
+			print(name2)
+			dist = compare_matrices(book1, book2)
+			print('Distance:', dist)
 
 
 def main():
