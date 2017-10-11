@@ -1,0 +1,256 @@
+Comparing books:
+20 - The Sign of the Four
+20 - The Sign of the Four
+Distance: 0.0
+Comparing books:
+20 - The Sign of the Four
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+Distance: 224.1196668055864
+Comparing books:
+20 - The Sign of the Four
+16 - The Return of Sherlock Holmes
+Distance: 339.682725626765
+Comparing books:
+20 - The Sign of the Four
+34 - Common Sense
+Distance: 224.95957496326906
+Comparing books:
+20 - The Sign of the Four
+48 - Songs of Innocence, and Songs of Experience
+Distance: 222.65793705071877
+Comparing books:
+20 - The Sign of the Four
+01 - A Study in Scarlet
+Distance: 300.8778584731423
+Comparing books:
+20 - The Sign of the Four
+06 - The Adventures of Sherlock Holmes
+Distance: 323.61792828369124
+Comparing books:
+20 - The Sign of the Four
+55 - Metamorphosis
+Distance: 224.17360282284363
+Comparing books:
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+20 - The Sign of the Four
+Distance: 224.1196668055864
+Comparing books:
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+Distance: 0.0
+Comparing books:
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+16 - The Return of Sherlock Holmes
+Distance: 283.7558819848685
+Comparing books:
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+34 - Common Sense
+Distance: 54.487242579888395
+Comparing books:
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+48 - Songs of Innocence, and Songs of Experience
+Distance: 42.87593291167167
+Comparing books:
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+01 - A Study in Scarlet
+Distance: 261.92267318989354
+Comparing books:
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+06 - The Adventures of Sherlock Holmes
+Distance: 264.41349040444544
+Comparing books:
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+55 - Metamorphosis
+Distance: 52.31296408164741
+Comparing books:
+16 - The Return of Sherlock Holmes
+20 - The Sign of the Four
+Distance: 339.682725626765
+Comparing books:
+16 - The Return of Sherlock Holmes
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+Distance: 283.7558819848685
+Comparing books:
+16 - The Return of Sherlock Holmes
+16 - The Return of Sherlock Holmes
+Distance: 0.0
+Comparing books:
+16 - The Return of Sherlock Holmes
+34 - Common Sense
+Distance: 284.42762624516746
+Comparing books:
+16 - The Return of Sherlock Holmes
+48 - Songs of Innocence, and Songs of Experience
+Distance: 282.8296933674964
+Comparing books:
+16 - The Return of Sherlock Holmes
+01 - A Study in Scarlet
+Distance: 360.94284886878796
+Comparing books:
+16 - The Return of Sherlock Holmes
+06 - The Adventures of Sherlock Holmes
+Distance: 353.0046213582906
+Comparing books:
+16 - The Return of Sherlock Holmes
+55 - Metamorphosis
+Distance: 283.8409501398338
+Comparing books:
+34 - Common Sense
+20 - The Sign of the Four
+Distance: 224.95957496326903
+Comparing books:
+34 - Common Sense
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+Distance: 54.487242579888395
+Comparing books:
+34 - Common Sense
+16 - The Return of Sherlock Holmes
+Distance: 284.42762624516746
+Comparing books:
+34 - Common Sense
+34 - Common Sense
+Distance: 0.0
+Comparing books:
+34 - Common Sense
+48 - Songs of Innocence, and Songs of Experience
+Distance: 46.48157878602429
+Comparing books:
+34 - Common Sense
+01 - A Study in Scarlet
+Distance: 262.6197323129124
+Comparing books:
+34 - Common Sense
+06 - The Adventures of Sherlock Holmes
+Distance: 265.08832402308434
+Comparing books:
+34 - Common Sense
+55 - Metamorphosis
+Distance: 56.0027485113796
+Comparing books:
+48 - Songs of Innocence, and Songs of Experience
+20 - The Sign of the Four
+Distance: 222.65793705071917
+Comparing books:
+48 - Songs of Innocence, and Songs of Experience
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+Distance: 42.87593291167172
+Comparing books:
+48 - Songs of Innocence, and Songs of Experience
+16 - The Return of Sherlock Holmes
+Distance: 282.8296933674964
+Comparing books:
+48 - Songs of Innocence, and Songs of Experience
+34 - Common Sense
+Distance: 46.48157878602431
+Comparing books:
+48 - Songs of Innocence, and Songs of Experience
+48 - Songs of Innocence, and Songs of Experience
+Distance: 0.0
+Comparing books:
+48 - Songs of Innocence, and Songs of Experience
+01 - A Study in Scarlet
+Distance: 260.67547546808333
+Comparing books:
+48 - Songs of Innocence, and Songs of Experience
+06 - The Adventures of Sherlock Holmes
+Distance: 263.35628996371327
+Comparing books:
+48 - Songs of Innocence, and Songs of Experience
+55 - Metamorphosis
+Distance: 44.3943478659878
+Comparing books:
+01 - A Study in Scarlet
+20 - The Sign of the Four
+Distance: 300.87785847314194
+Comparing books:
+01 - A Study in Scarlet
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+Distance: 261.92267318989275
+Comparing books:
+01 - A Study in Scarlet
+16 - The Return of Sherlock Holmes
+Distance: 360.94284886878796
+Comparing books:
+01 - A Study in Scarlet
+34 - Common Sense
+Distance: 262.61973231291273
+Comparing books:
+01 - A Study in Scarlet
+48 - Songs of Innocence, and Songs of Experience
+Distance: 260.675475468083
+Comparing books:
+01 - A Study in Scarlet
+01 - A Study in Scarlet
+Distance: 0.0
+Comparing books:
+01 - A Study in Scarlet
+06 - The Adventures of Sherlock Holmes
+Distance: 346.7964051641429
+Comparing books:
+01 - A Study in Scarlet
+55 - Metamorphosis
+Distance: 261.9893705820857
+Comparing books:
+06 - The Adventures of Sherlock Holmes
+20 - The Sign of the Four
+Distance: 323.6179282836907
+Comparing books:
+06 - The Adventures of Sherlock Holmes
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+Distance: 264.4134904044458
+Comparing books:
+06 - The Adventures of Sherlock Holmes
+16 - The Return of Sherlock Holmes
+Distance: 353.0046213582906
+Comparing books:
+06 - The Adventures of Sherlock Holmes
+34 - Common Sense
+Distance: 265.0883240230846
+Comparing books:
+06 - The Adventures of Sherlock Holmes
+48 - Songs of Innocence, and Songs of Experience
+Distance: 263.3562899637133
+Comparing books:
+06 - The Adventures of Sherlock Holmes
+01 - A Study in Scarlet
+Distance: 346.7964051641433
+Comparing books:
+06 - The Adventures of Sherlock Holmes
+06 - The Adventures of Sherlock Holmes
+Distance: 0.0
+Comparing books:
+06 - The Adventures of Sherlock Holmes
+55 - Metamorphosis
+Distance: 264.46792652430906
+Comparing books:
+55 - Metamorphosis
+20 - The Sign of the Four
+Distance: 224.17360282284383
+Comparing books:
+55 - Metamorphosis
+41 - The Importance of Being Earnest: A Trivial Comedy for Serious People
+Distance: 52.31296408164734
+Comparing books:
+55 - Metamorphosis
+16 - The Return of Sherlock Holmes
+Distance: 283.8409501398338
+Comparing books:
+55 - Metamorphosis
+34 - Common Sense
+Distance: 56.00274851137956
+Comparing books:
+55 - Metamorphosis
+48 - Songs of Innocence, and Songs of Experience
+Distance: 44.39434786598775
+Comparing books:
+55 - Metamorphosis
+01 - A Study in Scarlet
+Distance: 261.9893705820861
+Comparing books:
+55 - Metamorphosis
+06 - The Adventures of Sherlock Holmes
+Distance: 264.46792652430855
+Comparing books:
+55 - Metamorphosis
+55 - Metamorphosis
+Distance: 0.0

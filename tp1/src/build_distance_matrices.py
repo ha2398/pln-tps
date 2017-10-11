@@ -174,6 +174,7 @@ def get_books_distances():
 			print(name2)
 			dist = compare_matrices(book1, book2)
 			print('Distance:', dist)
+			print()
 
 
 def main():

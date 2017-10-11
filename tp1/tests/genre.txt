@@ -1,0 +1,124 @@
+Comparing books:
+17 - The Jungle Book
+17 - The Jungle Book
+Distance: 0.0
+
+Comparing books:
+17 - The Jungle Book
+69 - The Wonderful Wizard of Oz
+Distance: 342.5731763677032
+
+Comparing books:
+17 - The Jungle Book
+38 - Alice's Adventures in Wonderland
+Distance: 315.4321122150709
+
+Comparing books:
+17 - The Jungle Book
+70 - Through the Looking-Glass
+Distance: 555.4964620303413
+
+Comparing books:
+17 - The Jungle Book
+59 - Peter Pan
+Distance: 362.21049298669374
+
+Comparing books:
+69 - The Wonderful Wizard of Oz
+17 - The Jungle Book
+Distance: 342.5731763677051
+
+Comparing books:
+69 - The Wonderful Wizard of Oz
+69 - The Wonderful Wizard of Oz
+Distance: 0.0
+
+Comparing books:
+69 - The Wonderful Wizard of Oz
+38 - Alice's Adventures in Wonderland
+Distance: 192.994930107746
+
+Comparing books:
+69 - The Wonderful Wizard of Oz
+70 - Through the Looking-Glass
+Distance: 526.5021001100448
+
+Comparing books:
+69 - The Wonderful Wizard of Oz
+59 - Peter Pan
+Distance: 286.9360464603883
+
+Comparing books:
+38 - Alice's Adventures in Wonderland
+17 - The Jungle Book
+Distance: 315.43211221507295
+
+Comparing books:
+38 - Alice's Adventures in Wonderland
+69 - The Wonderful Wizard of Oz
+Distance: 192.994930107746
+
+Comparing books:
+38 - Alice's Adventures in Wonderland
+38 - Alice's Adventures in Wonderland
+Distance: 0.0
+
+Comparing books:
+38 - Alice's Adventures in Wonderland
+70 - Through the Looking-Glass
+Distance: 519.6140435996722
+
+Comparing books:
+38 - Alice's Adventures in Wonderland
+59 - Peter Pan
+Distance: 246.73650374866
+
+Comparing books:
+70 - Through the Looking-Glass
+17 - The Jungle Book
+Distance: 555.4964620303354
+
+Comparing books:
+70 - Through the Looking-Glass
+69 - The Wonderful Wizard of Oz
+Distance: 526.5021001100448
+
+Comparing books:
+70 - Through the Looking-Glass
+38 - Alice's Adventures in Wonderland
+Distance: 519.6140435996722
+
+Comparing books:
+70 - Through the Looking-Glass
+70 - Through the Looking-Glass
+Distance: 0.0
+
+Comparing books:
+70 - Through the Looking-Glass
+59 - Peter Pan
+Distance: 531.2404799972622
+
+Comparing books:
+59 - Peter Pan
+17 - The Jungle Book
+Distance: 362.2104929866941
+
+Comparing books:
+59 - Peter Pan
+69 - The Wonderful Wizard of Oz
+Distance: 286.9360464603944
+
+Comparing books:
+59 - Peter Pan
+38 - Alice's Adventures in Wonderland
+Distance: 246.73650374866
+
+Comparing books:
+59 - Peter Pan
+70 - Through the Looking-Glass
+Distance: 531.2404799972622
+
+Comparing books:
+59 - Peter Pan
+59 - Peter Pan
+Distance: 0.0

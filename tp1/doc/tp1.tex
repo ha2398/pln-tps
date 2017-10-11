@@ -149,8 +149,89 @@ Já o programa principal recebe apenas um parâmetro, para executar o programa, 
 
 Onde input\_folder é o diretório que contém os arquivos de texto dos livros de entrada.
 
+Após a execução desse comando, o programa irá gerar vetores de palavras
+para cada um dos livros que encontrar em input\_folder, calcular a matriz
+de distâncias para cada um dos livros, a partir dos vetores de palavras,
+e comparar cada par de livros, imprimindo um valor que indica a distãncia
+entre os livros, logo, quanto maior o valor, mais distantes estão os livros.
+
 \section{RESULTADOS}
 
+A fim de observar relações entre alguns aspectos dos livros de entrada
+e os vetores de palavras gerados para os mesmos, foram executados vários experimentos. Alguns deles são mostrados a seguir:
+
+\begin{itemize}
+	\item \textbf{Autores:} A fim de verificar a relação entre as
+	matrizes de distâncias geradas para livros escritos por um mesmo
+	autor, o programa foi rodado para os seguintes livros:
+
+	\begin{enumerate}
+		\item The Sign of the Four
+		\item A Study in Scarlet
+		\item The Adventures of Sherlock Holmes
+		\item The Return of Sherlock Holmes
+		\item Common Sense
+		\item Songs of Innocence, and Songs of Experience
+		\item Metamorphosis
+		\item The Importance of Being Earnest
+	\end{enumerate}
+
+	Sendo os 4 primeiros do mesmo autor (Arthur Conan Doyle), a tabela
+	a seguir nos mostra a distância entre cada par de livros.
+
+	\begin{center}
+		\begin{tabular}{ |c|c|c|c|c|c|c|c|c| }
+		\hline
+		 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+		1 & 0 & 300.88 & 323.62 & 339.68 & 224.96 & 222.66 & 224.17 & 224.12 \\
+		2 & 300.88 & 0 & 346.80 & 360.94 & 262.62 & 260.68 & 261.99 & 261.92 \\ 
+		3 & 323.62 & 346.80 & 0 & 353.00 & 265.09 & 263.36 & 264.47 & 264.41 \\ 
+		4 & 339.68 & 360.94 & 353.00 & 0 & 284.42 & 282.83 & 283.84 & 283.76 \\ 
+		5 & 224.96 & 262.62 & 265.09 & 284.42 & 0 & 46.48 & 56.00 & 54.49 \\ 
+		6 & 222.66 & 260.68 & 263.36 & 282.83 & 46.48 & 0 & 44.39 & 42.88 \\ 
+		7 & 224.17 & 261.99 & 264.47 & 283.84 & 56.00 & 44.39 & 0 & 52.31 \\ 
+		8 & 224.12 & 261.92 & 264.41 & 283.76 & 54.49 & 42.88 & 52.31 & 0 \\ 
+		\hline
+		\end{tabular}
+	\end{center}
+
+	\mbox{}\\
+	Vemos que a parte superior esquerda da tabela (representa os livros escritos por Arthur Conan Doyle) possuem valores muito parecidos, todos próximos de 300. Já o restante da matriz apresenta valores muito variados. Uma das possíveis explicações para o fato de que a 
+	parte inferior direita da matriz apresenta valores tão baixos pode
+	estar relacionada ao tamanho dos livros analisados, não muito grandes e, portanto, com vetores de palavras não muito bem treinados. \\
+
+	\item \textbf{Gênero:} Para verificar qual a relação obtida na
+	comparação entre livros do mesmo gênero, comparamos 5 livros do
+	gênero de fantasia infantil.
+
+	\begin{enumerate}
+		\item The Jungle Book
+		\item The Wonderful Wizard of Oz
+		\item Alice's Adventures in Wonderland
+		\item Through the Looking-Glass
+		\item Peter Pan
+	\end{enumerate}
+
+	\begin{center}
+		\begin{tabular}{ |c|c|c|c|c|c| }
+		\hline
+		 & 1 & 2 & 3 & 4 & 5 \\ \hline
+		1 & 0 & 342.57 & 315.43 & 555.50 & 362.21 \\
+		2 & 342.57 & 0 & 192.99 & 526.50 & 286.93 \\
+		3 & 315.43 & 192.99 & 0 & 519.61 & 246.73 \\
+		4 & 555.50 & 526.50 & 519.61 & 0 & 531.24 \\
+		5 & 362.21 & 286.93 & 246.73 & 531.24 & 0 \\
+		\hline
+		\end{tabular}
+	\end{center}
+
+	Vemos que os valores são muito coerentes em uma mesma linha ou
+	uma mesma coluna. Além disso, dentre os cinco livros analisados,
+	Alice's Adventures in Wonderland e The Wonderful Wizard of Oz são
+	aqueles com maior proximidade, isso poderia ser explicado pelo
+	enredo que apresenta grandes semelhanças. 
+
+\end{itemize}
 
 \section{CONCLUSÃO}
 
