@@ -8,6 +8,8 @@
 % UTF-8 encoding is recommended by ShareLaTex
 
 \usepackage{hyperref}
+\usepackage{mdframed}
+\usepackage{minted}
 
 \sloppy
 
@@ -123,17 +125,87 @@ na Tabela \ref{tab:features}.
 O trabalho foi implementado utilizando a linguagem Python 3. Além disso, nenhum
 dos algoritmos de aprendizado de máquina foram implementados, sendo utilizada
 uma biblioteca que já continha tanto uma implementação do Naive Bayes quanto do
-SVM. 
+SVM. Essa biblioteca é a Scikit-Learn
+\footnote{\url{http://scikit-learn.org/stable/}}.
 
-Linguagem
-Bibliotecas
-Decisões de implementação
-Como executar
+\subsection{Decisões de Implementação}
+
+Algumas decisões de implementação foram se mostrando necessárias ao longo do 
+desenvolvimento do projeto. Estas são apresentadas a seguir:
+
+\begin{itemize}
+	\item \textbf{Feature Hasher:} Para cada palavra do corpus, os features são
+	coletados e armazenados em um dicionário. Para usar esses dados como entrada
+	dos algoritmos de aprendizado, é necessário efetuar uma transformação para
+	uma matriz de tipo Numpy Array \footnote{\url{www.numpy.org/}}. O utilitário 
+	FeatureHasher da biblioteca Scikit-Learn se encarrega dessa tarefa, sendo
+	muito útil para conjuntos de dados tão grandes como o corpus Mac-Morpho.
+	Com ele, a lista que contém os dicionários que representam os features
+	de cada palavra são convertidos para Numpy Array de forma eficiente tanto
+	em tempo quanto espaço. No momento da instanciação de um objeto FeatureHasher,
+	especifica-se o número de features no dicionário de features. No caso desse
+	trabalho, esse número é igual a 17.
+
+	\item \textbf{Naive Bayes Gaussiano:} A biblioteca Scikit-Learn fornece várias
+	implementações do algoritmo de Naive Bayes. Dentre essas, duas foram testadas
+	no trabalho: a implementação Multinomial e a Gaussiana. Comparando a precisão
+	obtida com ambas, foi verificado que a segunda atinge maior precisão para o 
+	corpus e, portanto, foi usada no código final do projeto.
+\end{itemize}
+
+\subsection{Execução do Projeto}
+
+Os arquivos do projeto encontram-se distribuídos em três pastas:
+
+\begin{itemize}
+	\item \textbf{doc:} Contém os arquivos de documentação e manual de tags 
+	do corpus Mac-Morpho.
+
+	\item \textbf{corpus:} Base de dados do corpus Mac-Morpho, dividido em treino,
+	validação e teste.
+
+	\item \textbf{src:} Código fonte do programa principal que lê o corpus, 
+	calcula as features de cada palavra e alimenta esses dados aos dois
+	algoritmos de aprendizado, imprimindo os resultados de precisão para cada um
+	deles.
+\end{itemize}
+
+Para executar o programa, na pasta \textbf{src}, basta executar o comando:
+
+\begin{center}
+	./tp2.py [-h] [-s RSEED] train\_file test\_file validation\_file
+\end{center}
+
+Onde os argumentos do programa são:
+
+\begin{itemize}
+	\item \textbf{Argumentos posicionais:}
+
+	\begin{itemize}
+		\item train\_file: Nome do arquivo de treino.
+		\item test\_file: Nome do arquivo de teste.
+		\item validation\_file: Nome do arquivo de validação.
+	\end{itemize}
+
+	\item \textbf{Argumentos opcionais:}
+
+	\begin{itemize}
+		\item -h ou --help: Exibe uma mensagem de ajuda e termina execução.
+		\item -s RSEED: Seta o número RSEED como semente de geração de números
+		aleatórios para o algoritmo SVM.
+	\end{itemize}
+\end{itemize}
 
 \section{RESULTADOS}
 
-Saída do programa
-Análise
+Executando o programa com o corpus Mac-Morpho, uma das saídas obtidas (resultado
+do SVM varia com o número da seed de números aleatórios) é mostrada a seguir.
+
+\begin{mdframed}[linecolor=black, leftline=false, rightline=false]
+    \inputminted[linenos, fontsize=\footnotesize]{text}{../src/out.txt}
+\end{mdframed}
+
+
 
 \section{CONCLUSÃO}
 

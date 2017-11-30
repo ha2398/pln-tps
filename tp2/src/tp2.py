@@ -216,6 +216,6 @@ def main():
 	precision = ((test_data[1] == svm_y_test).sum()) / len(test_data[0])
 	print('[+] Test precision: {}%'.format(round((precision*100), 2)))
 	print_most_precise_pos(test_data[1], svm_y_test)
-
+	
 
 main()
