@@ -7,6 +7,8 @@
 \usepackage[utf8]{inputenc}  
 % UTF-8 encoding is recommended by ShareLaTex
 
+\usepackage{hyperref}
+
 \sloppy
 
 \title{Trabalho Prático 2 - Processamento de Linguagem Natural}
@@ -32,19 +34,101 @@
 
 \section{INTRODUÇÃO}
 
+Em Processamento de Linguagem Natural, uma vez que o principal objetivo é fazer
+com que os computadores entendam as linguagens naturais usadas pelos seres
+humanos, muitas vezes torna-se necessário reduzir a complexidade dessa tarefa
+ao quebrá-la em tarefas intermediárias. Uma dessas tarefas, que é particularmente
+útil na área de \textbf{parsing}, é a tarefa de \textbf{Part-of-speech tagging},
+que se trata da identificação das classes gramaticais de cada uma das palavras
+presentes um corpus \cite{Manning:1999:FSN:311445}. Esse problema não trata-se
+apenas da criação de um banco de dados que contenha a classe de cada palavra,
+uma vez que uma mesma palavra pode estar associada a múltiplas classes de acordo
+com seu contexto e posição em uma sentença.
 
+Uma das abordagens que podem usadas para resolver esse problema é utilizar algum
+algoritmo de aprendizado de máquina supervisionado. Nesse trabalho, serão
+utilizados dois algoritmos de aprendizado para resolver o problema de POS
+tagging a fim de verificar e comparar a precisão e desempenho de cada um.
 
 \section{MODELAGEM}
 
+Dentro dos métodos de aprendizado de máquina supervisionada, existem os 
+paramétricos e os não-paramétricos. A diferença entre os dois é que, nos métodos
+paramétricos, assume-se que os dados se organizam em algum modelo e então encontra-se
+valores apropriados do modelo a partir dos exemplos. Para abordar o problema
+de POS tagging, vamos utilizar um algoritmo de cada categoria, sendo
+\textbf{Naive Bayes} \cite{McCallum98acomparison} o paramétrico e o classificador
+ de \textbf{Support Vector Machines (SVM)} \cite{708428} o não-paramétrico.
 
+Uma vez determinados os algoritmos a serem utilizados no processo de aprendizado,
+é necessário discutir o conjunto de dados de entrada e o mapeamento desses dados
+para a entrada dos algoritmos.
+
+\subsection{Corpus de Entrada}
+
+O conjunto de dados utilizado no trabalho como entrada dos algoritmos de
+aprendizado é o corpus Mac-Morpho \cite{Aluisio2003}. O Mac-Morpho é um corpus
+de textos escritos em Português Brasileiro, anotados com as classes gramaticais
+de cada palavra presente. Há, disponíveis para download gratuito, as seções
+de treinamento, validação e teste do corpus, que representam $ 76\% $, $ 4\% $ e
+$ 20\% $ do total do corpus, respectivamente.
+
+Na página do corpus online
+\footnote{ \url{http://nilc.icmc.usp.br/macmorpho} } é possível fazer o download
+ do mesmo, juntamente com o manual das anotações, que descreve todas as classes gramaticais utilizadas no corpus.
+
+\subsection{Extração de Features}
+
+Com o corpus de entrada em mãos, o próximo passo foi determinar como mapear esses
+dados para serem alimentados aos algoritmos de aprendizado de máquina. Para isso,
+a decisão foi trabalhar com features das palavras. Essas features são, como o
+nome indica, características obtidas através de cada palavra em si, além do seu
+contexto na sentença em que se encontra, isto é, posição absoluta e relativa às
+classes gramaticais. A lista das features utilizadas no trabalho é mostrada
+na Tabela \ref{tab:features}.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Feature} & \textbf{Descrição} \\ \hline
+		\textbf{word} & A própria palavra em si. \\ \hline
+		\textbf{is\_first} & Booleano que indica se a palavra é a primeira da sentença. \\ \hline
+		\textbf{is\_last} & Booleano que indica se a palavra é a primeira da sentença. \\ \hline
+		\textbf{is\_capitalized} & Booleano que indica se a palavra começa com uma letra maiúscula. \\ \hline
+		\textbf{is\_all\_caps} & Booleano que indica se a palavra somente contém
+		letras maiúsculas. \\ \hline
+		\textbf{is\_all\_lower} & Booleano que indica se a palavra contém somente
+		letras minúsculas. \\ \hline
+		\textbf{prefix-1} & String com o primeiro caractere da palavra. \\ \hline
+		\textbf{prefix-2} & String com os dois primeiros caracteres da palavra. \\ \hline
+		\textbf{prefix-3} & String com os três primeiros caracteres da palavra. \\ \hline
+		\textbf{suffix-1} & String com o último caractere da palavra. \\ \hline
+		\textbf{suffix-2} & String com os dois últimos caracteres da palavra. \\ \hline
+		\textbf{suffix-3} & String com os três últimos caracteres da palavra. \\ \hline
+		\textbf{prev\_tag} & String que representa a classe gramatical da palavra
+		anterior à palavra atual. \\ \hline
+		\textbf{next\_tag} & String que representa a classe gramatical da palavra
+		seguinte à palavra atual. \\ \hline
+		\textbf{has\_hyphen} & Booleano que indica se a palavra possui hífen.
+		\\ \hline
+		\textbf{is\_numeric} & Booleano que indica se a palavra é um número
+		(dígitos). \\ \hline
+	\end{tabular}
+	\caption{\label{tab:features} Features de palavras utilizadas no trabalho.}
+\end{table}
 
 \section{IMPLEMENTAÇÃO}
 
-
+Linguagem
+Bibliotecas
+Decisões de implementação
+Como executar
 
 \section{RESULTADOS}
 
-
+Saída do programa
+Análise
 
 \section{CONCLUSÃO}
 
