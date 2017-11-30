@@ -205,11 +205,44 @@ do SVM varia com o número da seed de números aleatórios) é mostrada a seguir
     \inputminted[linenos, fontsize=\footnotesize]{text}{../src/out.txt}
 \end{mdframed}
 
+Um primeiro resultado interessante a observar é o aspecto de tempo de execução.
+Enquanto o Naive Bayes demora cerca de 30 segundos para executar com todos os 
+arquivos do corpus Mac-Morpho, o SVM precisa de por volta de 7 horas para computar seus resultados.
 
+Em relação à precisão de acerto dos algoritmos, vemos que as classes mais
+difíceis de serem previstas utilizando os mesmo foram as classes Interjeição e
+aquelas formadas pela combinação entre Preposições e outras classes gramaticais.
+Podemos a baixa acurácia da classe de interjeição a partir do fato de que as
+palavras dessa classe, além de geralmente serem muito curtas (sem informação
+de sufixos ou prefixos), também geralmente vêm sozinhas em uma frase -
+ \textit{"Ufa!"} -, não possuindo assim qualquer informação de contexto. Com
+ esses fatores, essas palavras acabam produzindo features pouco expressivos no
+ programa. Já para as preposições combinadas com outras classes, uma hipótese
+ para tal precisão baixa é a de que padrões mais complicados (que envolvem uma
+ sequência de tags) não são de fácil aprendizado para os algoritmos.
+
+Uma outra observação diz respeito à precisão muito próxima de $ 100\% $ para a
+classe de Símbolo de Moeda Corrente. Isso muito provavelmente se deve ao fato de
+que as palavras dessa classe são identificadas por serem numéricas e, como há
+um feature para identificar tal situação, os algoritmos não têm dificuldade em
+aprender esse padrão.
 
 \section{CONCLUSÃO}
 
+O trabalho em questão possibilitou um grande aprendizado, além de fixar aquele já adquirido durante as aulas da disciplina de Processamento de Linguagem
+Natural.
 
+Dentro do aspecto do conhecimento adquirido com a disciplina, é importante destacar os métodos de aprendizado supervisionado, que aqui ilustram como é
+feito o processo de treinamento para uma tarefa da área de Processamento de
+Linguagem Natural. Foi muito interessante utilizar dois modelos, um paramétrico
+e outro não-paramétrico, obter seus resultados e poder compará-los a fim de
+ verificar os padrões identificados por cada um e como o fato de serem
+ paramétricos ou não afetam nesses padrões e resultados, buscando encontrar
+ explicações para os mesmos.
+
+Finalmente, ressalto a utilidade do trabalho para poder adquirir conhecimento
+sobre a biblioteca Scikit-Learn e sobre o corpus Mac-Morpho, creio que esses
+dois conhecimentos são de grande importância para qualquer estudante da área.
 
 \section{REFERÊNCIAS}
 
